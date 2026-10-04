@@ -9,25 +9,6 @@
 
 ---
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Supported Hardware](#supported-hardware)
-- [Software Components](#software-components)
-- [Layer Dependencies](#layer-dependencies)
-- [Layer Structure](#layer-structure)
-- [Quick Start](#quick-start)
-- [Build Artifacts](#build-artifacts)
-- [SD Card Layout](#sd-card-layout)
-- [Flashing the Image](#flashing-the-image)
-- [Booting](#booting)
-- [Kernel Configuration](#kernel-configuration)
-- [Contributing](#contributing)
-- [Maintainer](#maintainer)
-- [License](#license)
-
----
-
 ## Overview
 
 `meta-f1c100s-soc` provides Board Support Package (BSP) support for the
@@ -116,6 +97,7 @@ sudo locale-gen en_US.UTF-8
 mkdir -p ~/yocto && cd ~/yocto
 
 git clone git://git.yoctoproject.org/poky -b scarthgap
+git clone https://github.com/openembedded/meta-openembedded.git -b scarthgap
 git clone https://github.com/nhattran02/meta-f1c100s-soc.git
 ```
 
@@ -128,6 +110,9 @@ source poky/oe-init-build-env build
 ### 4. Add the layer
 
 ```bash
+bitbake-layers add-layer ../meta-openembedded/meta-oe
+bitbake-layers add-layer ../meta-openembedded/meta-networking
+bitbake-layers add-layer ../meta-openembedded/meta-python
 bitbake-layers add-layer ../meta-f1c100s-soc
 bitbake-layers show-layers
 ```
