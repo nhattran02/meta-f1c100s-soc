@@ -1,0 +1,9 @@
+# SD card layout for Allwinner F1C100s:
+#   8 KiB  u-boot-sunxi-with-spl.bin (BROM loads SPL from here)
+#   1 MiB  boot partition (vfat): zImage, dtb, boot.scr
+#   ...    rootfs (ext4)
+part u-boot --source rawcopy --sourceparams="file=u-boot-sunxi-with-spl.bin" --ondisk mmcblk0 --no-table --align 8
+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 1024 --fixed-size 16M
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs --align 1024
+
+bootloader --ptable msdos
